@@ -1,0 +1,24 @@
+{
+  "applications": "*",
+  "changelogDate": "20231016052503",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "product_consumption",
+  "fields": [
+    {
+      "fieldName": "quantityConsumed",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "totalProductsCost",
+      "fieldType": "Double"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "ProductConsumption",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}
