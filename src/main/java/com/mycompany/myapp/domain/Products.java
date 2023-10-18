@@ -33,6 +33,10 @@ public class Products implements Serializable {
     @Column(name = "labour_cost")
     private Double labourCost;
 
+    @JsonIgnoreProperties(value = {"rawMaterial"}, allowSetters = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Products usedForProducts;
+
     @ManyToMany(mappedBy = "products")
     @JsonIgnoreProperties(value = { "products" }, allowSetters = true)
     private Set<RawMaterial> rawMaterials = new HashSet<>();
@@ -132,6 +136,19 @@ public class Products implements Serializable {
     public Products removeRawMaterial(RawMaterial rawMaterial) {
         this.rawMaterials.remove(rawMaterial);
         rawMaterial.getProducts().remove(this);
+        return this;
+    }
+
+    public Products getUsedForProducts() {
+        return usedForProducts;
+    }
+
+    public void setUsedForProducts(Products usedForProducts) {
+        this.usedForProducts = usedForProducts;
+    }
+
+    public Products usedForProducts(Products products) {
+        this.setUsedForProducts(products);
         return this;
     }
 

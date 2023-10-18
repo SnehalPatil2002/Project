@@ -19,6 +19,8 @@ public class ProductsDTO implements Serializable {
 
     private Double labourCost;
 
+    private ProductsDTO usedForProducts;
+
     public Long getId() {
         return id;
     }
@@ -59,6 +61,14 @@ public class ProductsDTO implements Serializable {
         this.labourCost = labourCost;
     }
 
+    public ProductsDTO getUsedForProducts() {
+        return usedForProducts;
+    }
+
+    public void setUsedForProducts(ProductsDTO usedForProducts) {
+        this.usedForProducts = usedForProducts;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -89,6 +99,7 @@ public class ProductsDTO implements Serializable {
             ", availableQty=" + getAvailableQty() +
             ", manufacturingCost=" + getManufacturingCost() +
             ", labourCost=" + getLabourCost() +
+            ", UsedForProducts= " + getUsedForProducts() +
             "}";
     }
 }

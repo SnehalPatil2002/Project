@@ -102,6 +102,15 @@ public class PurchaseRequestQueryService extends QueryService<PurchaseRequest> {
             if (criteria.getStatus() != null) {
                 specification = specification.and(buildSpecification(criteria.getStatus(), PurchaseRequest_.status));
             }
+            if (criteria.getRawMaterialId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(
+                            criteria.getRawMaterialId(),
+                            root -> root.join(PurchaseRequest_.rawMaterial, JoinType.LEFT).get(String.valueOf(RawMaterial_.id))
+                        )
+                    );
+            }
         }
         return specification;
     }

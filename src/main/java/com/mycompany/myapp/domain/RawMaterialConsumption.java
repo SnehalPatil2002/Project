@@ -1,5 +1,7 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -26,6 +28,22 @@ public class RawMaterialConsumption implements Serializable {
 
     @Column(name = "total_material_cost")
     private Double totalMaterialCost;
+
+    @JsonIgnoreProperties(value = { "products", "warehouse" }, allowSetters = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private RawMaterial rawMaterial;
+    // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    @JsonIgnoreProperties(value = { "rawMaterials" }, allowSetters = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Products products;
+    @JsonIgnoreProperties(value = { "product" }, allowSetters = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ProductionLine productionLine;
+
+    @JsonIgnoreProperties(value = { "projects" }, allowSetters = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Projects projects;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -81,6 +99,54 @@ public class RawMaterialConsumption implements Serializable {
         this.totalMaterialCost = totalMaterialCost;
     }
 
+    public RawMaterial getRawMaterial() {
+        return rawMaterial;
+    }
+
+    public void setRawMaterial(RawMaterial rawMaterial) {
+        this.rawMaterial = rawMaterial;
+    }
+
+    public RawMaterialConsumption rawMaterial(RawMaterial rawMaterial){
+        this.setRawMaterial(rawMaterial);
+        return this;
+    }
+
+    public Products getProducts() {
+        return products;
+    }
+
+    public void setProducts(Products products) {
+        this.products = products;
+    }
+
+    public RawMaterialConsumption products(Products products){
+        this.setProducts(products);
+        return this;
+    }
+    public ProductionLine getProductionLine() {
+        return productionLine;
+    }
+
+    public RawMaterialConsumption productionLine(ProductionLine productionLine){
+        this.setProductionLine(productionLine);
+        return this;
+    }
+    public void setProductionLine(ProductionLine productionLine) {
+        this.productionLine = productionLine;
+    }
+
+    public Projects getProjects() {
+        return projects;
+    }
+
+    public RawMaterialConsumption projects(Projects projects){
+        this.setProjects(projects);
+        return this;
+    }
+    public void setProjects(Projects projects) {
+        this.projects = projects;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -108,6 +174,10 @@ public class RawMaterialConsumption implements Serializable {
             ", quantityConsumed=" + getQuantityConsumed() +
             ", scrapGenerated=" + getScrapGenerated() +
             ", totalMaterialCost=" + getTotalMaterialCost() +
+            ", rawMaterial= " + getRawMaterial() +
+            ", products= " + getProducts() +
+            ", productionLine= " + getProductionLine() +
+            ", projects= " + getProjects() +
             "}";
     }
 }

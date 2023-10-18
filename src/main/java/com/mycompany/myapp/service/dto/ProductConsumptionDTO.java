@@ -15,6 +15,12 @@ public class ProductConsumptionDTO implements Serializable {
 
     private Double totalProductsCost;
 
+    private ProjectsDTO projects;
+
+    private ProductsDTO product;
+
+    private ProductsDTO products;
+
     public Long getId() {
         return id;
     }
@@ -37,6 +43,30 @@ public class ProductConsumptionDTO implements Serializable {
 
     public void setTotalProductsCost(Double totalProductsCost) {
         this.totalProductsCost = totalProductsCost;
+    }
+
+    public ProjectsDTO getProjects() {
+        return projects;
+    }
+
+    public void setProjects(ProjectsDTO projects) {
+        this.projects = projects;
+    }
+
+    public ProductsDTO getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductsDTO product) {
+        this.product = product;
+    }
+
+    public ProductsDTO getProducts() {
+        return products;
+    }
+
+    public void setProducts(ProductsDTO products) {
+        this.products = products;
     }
 
     @Override
@@ -67,6 +97,9 @@ public class ProductConsumptionDTO implements Serializable {
             "id=" + getId() +
             ", quantityConsumed=" + getQuantityConsumed() +
             ", totalProductsCost=" + getTotalProductsCost() +
+            ", products= " + getProducts() +
+            ", product= " + getProduct() +
+            ", projects= " + getProjects() +
             "}";
     }
 }

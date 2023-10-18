@@ -27,6 +27,8 @@ public class ProductionLineCriteria implements Serializable, Criteria {
 
     private BooleanFilter isActive;
 
+    private LongFilter productsId;
+
     private Boolean distinct;
 
     public ProductionLineCriteria() {}
@@ -35,6 +37,7 @@ public class ProductionLineCriteria implements Serializable, Criteria {
         this.id = other.id == null ? null : other.id.copy();
         this.description = other.description == null ? null : other.description.copy();
         this.isActive = other.isActive == null ? null : other.isActive.copy();
+        this.productsId = other.productsId == null ? null : other.productsId.copy();
         this.distinct = other.distinct;
     }
 
@@ -88,6 +91,20 @@ public class ProductionLineCriteria implements Serializable, Criteria {
         this.isActive = isActive;
     }
 
+    public LongFilter getProductsId() {
+        return productsId;
+    }
+
+    public void setProductsId(LongFilter productsId) {
+        this.productsId = productsId;
+    }
+
+    public LongFilter productsId(){
+        if(productsId == null){
+            productsId = new LongFilter();
+        }
+        return productsId();
+    }
     public Boolean getDistinct() {
         return distinct;
     }
@@ -109,13 +126,14 @@ public class ProductionLineCriteria implements Serializable, Criteria {
             Objects.equals(id, that.id) &&
             Objects.equals(description, that.description) &&
             Objects.equals(isActive, that.isActive) &&
+                Objects.equals(productsId, that.productsId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, isActive, distinct);
+        return Objects.hash(id, description, isActive, productsId, distinct);
     }
 
     // prettier-ignore
@@ -125,6 +143,7 @@ public class ProductionLineCriteria implements Serializable, Criteria {
             (id != null ? "id=" + id + ", " : "") +
             (description != null ? "description=" + description + ", " : "") +
             (isActive != null ? "isActive=" + isActive + ", " : "") +
+            (productsId != null ? "productId=" + productsId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

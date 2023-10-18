@@ -53,6 +53,10 @@ public class RawMaterial implements Serializable {
     @JsonIgnoreProperties(value = { "rawMaterials" }, allowSetters = true)
     private Set<Products> products = new HashSet<>();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    //@JsonIgnoreProperties(value = { "rawMaterials" }, allowSetters = true)
+    private Warehouse warehouse;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -183,6 +187,20 @@ public class RawMaterial implements Serializable {
         products.getRawMaterials().remove(this);
         return this;
     }
+
+    public Warehouse getWarehouse() {
+        return this.warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
+    }
+
+    public RawMaterial warehouse(Warehouse warehouse) {
+        this.setWarehouse(warehouse);
+        return this;
+    }
+
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

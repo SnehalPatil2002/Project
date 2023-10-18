@@ -30,6 +30,8 @@ public class RawMaterialDTO implements Serializable {
 
     private Set<ProductsDTO> products = new HashSet<>();
 
+    private WarehouseDTO warehouse;
+
     public Long getId() {
         return id;
     }
@@ -101,6 +103,13 @@ public class RawMaterialDTO implements Serializable {
     public void setProducts(Set<ProductsDTO> products) {
         this.products = products;
     }
+    public WarehouseDTO getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(WarehouseDTO warehouse) {
+        this.warehouse = warehouse;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -136,6 +145,7 @@ public class RawMaterialDTO implements Serializable {
             ", gstPercentage=" + getGstPercentage() +
             ", reorderPoint=" + getReorderPoint() +
             ", products=" + getProducts() +
+            ", warehouse=" + getWarehouse() +
             "}";
     }
 }

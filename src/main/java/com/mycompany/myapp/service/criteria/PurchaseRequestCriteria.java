@@ -48,6 +48,7 @@ public class PurchaseRequestCriteria implements Serializable, Criteria {
     private InstantFilter expectedDate;
 
     private StatusFilter status;
+    private LongFilter rawMaterialId;
 
     private Boolean distinct;
 
@@ -59,6 +60,7 @@ public class PurchaseRequestCriteria implements Serializable, Criteria {
         this.requestDate = other.requestDate == null ? null : other.requestDate.copy();
         this.expectedDate = other.expectedDate == null ? null : other.expectedDate.copy();
         this.status = other.status == null ? null : other.status.copy();
+        this.rawMaterialId = other.rawMaterialId == null ? null : other.rawMaterialId.copy();
         this.distinct = other.distinct;
     }
 
@@ -150,6 +152,14 @@ public class PurchaseRequestCriteria implements Serializable, Criteria {
         this.distinct = distinct;
     }
 
+    public LongFilter getRawMaterialId() {
+        return rawMaterialId;
+    }
+
+    public void setRawMaterialId(LongFilter rawMaterialId) {
+        this.rawMaterialId = rawMaterialId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -165,13 +175,14 @@ public class PurchaseRequestCriteria implements Serializable, Criteria {
             Objects.equals(requestDate, that.requestDate) &&
             Objects.equals(expectedDate, that.expectedDate) &&
             Objects.equals(status, that.status) &&
+                Objects.equals(rawMaterialId, that.rawMaterialId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, qtyRequired, requestDate, expectedDate, status, distinct);
+        return Objects.hash(id, qtyRequired, requestDate, expectedDate, status,rawMaterialId , distinct);
     }
 
     // prettier-ignore
@@ -183,6 +194,7 @@ public class PurchaseRequestCriteria implements Serializable, Criteria {
             (requestDate != null ? "requestDate=" + requestDate + ", " : "") +
             (expectedDate != null ? "expectedDate=" + expectedDate + ", " : "") +
             (status != null ? "status=" + status + ", " : "") +
+            (rawMaterialId != null ? "status=" + rawMaterialId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

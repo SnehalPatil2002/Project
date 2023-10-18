@@ -33,6 +33,8 @@ public class ProductsCriteria implements Serializable, Criteria {
 
     private LongFilter rawMaterialId;
 
+    private LongFilter usedForProductsId;
+
     private Boolean distinct;
 
     public ProductsCriteria() {}
@@ -44,6 +46,7 @@ public class ProductsCriteria implements Serializable, Criteria {
         this.manufacturingCost = other.manufacturingCost == null ? null : other.manufacturingCost.copy();
         this.labourCost = other.labourCost == null ? null : other.labourCost.copy();
         this.rawMaterialId = other.rawMaterialId == null ? null : other.rawMaterialId.copy();
+        this.usedForProductsId = other.usedForProductsId == null ? null : other.usedForProductsId.copy();
         this.distinct = other.distinct;
     }
 
@@ -142,6 +145,20 @@ public class ProductsCriteria implements Serializable, Criteria {
         this.rawMaterialId = rawMaterialId;
     }
 
+    public LongFilter getUsedForProductsId() {
+        return usedForProductsId;
+    }
+
+    public void setUsedForProductsId(LongFilter usedForProductsId) {
+        this.usedForProductsId = usedForProductsId;
+    }
+    public LongFilter usedForProductsId() {
+        if (usedForProductsId == null) {
+            usedForProductsId = new LongFilter();
+        }
+        return usedForProductsId;
+    }
+
     public Boolean getDistinct() {
         return distinct;
     }
@@ -166,13 +183,14 @@ public class ProductsCriteria implements Serializable, Criteria {
             Objects.equals(manufacturingCost, that.manufacturingCost) &&
             Objects.equals(labourCost, that.labourCost) &&
             Objects.equals(rawMaterialId, that.rawMaterialId) &&
+                Objects.equals(usedForProductsId, that.usedForProductsId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, productName, availableQty, manufacturingCost, labourCost, rawMaterialId, distinct);
+        return Objects.hash(id, productName, availableQty, manufacturingCost, labourCost, rawMaterialId, usedForProductsId, distinct);
     }
 
     // prettier-ignore
@@ -185,6 +203,7 @@ public class ProductsCriteria implements Serializable, Criteria {
             (manufacturingCost != null ? "manufacturingCost=" + manufacturingCost + ", " : "") +
             (labourCost != null ? "labourCost=" + labourCost + ", " : "") +
             (rawMaterialId != null ? "rawMaterialId=" + rawMaterialId + ", " : "") +
+            (usedForProductsId != null ? "rawMaterialId=" + usedForProductsId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

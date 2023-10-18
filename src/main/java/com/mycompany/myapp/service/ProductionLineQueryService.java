@@ -96,6 +96,9 @@ public class ProductionLineQueryService extends QueryService<ProductionLine> {
             if (criteria.getIsActive() != null) {
                 specification = specification.and(buildSpecification(criteria.getIsActive(), ProductionLine_.isActive));
             }
+            if(criteria.getProductsId() != null){
+                specification = specification.and(buildSpecification(criteria.getProductsId(),root -> root.join(ProductionLine_.products, JoinType.LEFT).get(Products_.id)));
+            }
         }
         return specification;
     }

@@ -49,6 +49,12 @@ public class StockRequestCriteria implements Serializable, Criteria {
 
     private StatusFilter status;
 
+    private LongFilter rawMaterialId;
+    private LongFilter productsId;
+
+    private LongFilter productionLineId;
+    private LongFilter projectsId;
+
     private Boolean distinct;
 
     public StockRequestCriteria() {}
@@ -59,6 +65,7 @@ public class StockRequestCriteria implements Serializable, Criteria {
         this.reqDate = other.reqDate == null ? null : other.reqDate.copy();
         this.isProd = other.isProd == null ? null : other.isProd.copy();
         this.status = other.status == null ? null : other.status.copy();
+        this.rawMaterialId = other.rawMaterialId == null ? null : other.rawMaterialId.copy();
         this.distinct = other.distinct;
     }
 
@@ -142,6 +149,62 @@ public class StockRequestCriteria implements Serializable, Criteria {
         this.status = status;
     }
 
+    public LongFilter getRawMaterialId() {
+        return rawMaterialId;
+    }
+
+    public void setRawMaterialId(LongFilter rawMaterial) {
+        this.rawMaterialId = rawMaterial;
+    }
+    public LongFilter rawMaterialId() {
+        if (rawMaterialId == null) {
+            rawMaterialId = new LongFilter();
+        }
+        return rawMaterialId;
+    }
+
+    public LongFilter getProductsId() {
+        return productsId;
+    }
+    public LongFilter productsId(){
+        if(productsId == null){
+            productsId = new LongFilter();
+        }
+        return productsId;
+    }
+
+    public void setProductsId(LongFilter productsId) {
+        this.productsId = productsId;
+    }
+
+    public LongFilter getProductionLineId() {
+        return productionLineId;
+    }
+
+    public void setProductionLineId(LongFilter productionLineId) {
+        this.productionLineId = productionLineId;
+    }
+    public LongFilter productionLineId(){
+        if(productionLineId == null){
+            productionLineId = new LongFilter();
+        }
+        return productionLineId;
+    }
+
+    public LongFilter getProjectsId() {
+        return projectsId;
+    }
+
+    public void setProjectsId(LongFilter projectsId) {
+        this.projectsId = projectsId;
+    }
+    public LongFilter projectsId(){
+        if(projectsId == null){
+            projectsId = new LongFilter();
+        }
+        return projectsId;
+    }
+
     public Boolean getDistinct() {
         return distinct;
     }
@@ -165,13 +228,17 @@ public class StockRequestCriteria implements Serializable, Criteria {
             Objects.equals(reqDate, that.reqDate) &&
             Objects.equals(isProd, that.isProd) &&
             Objects.equals(status, that.status) &&
+                Objects.equals(rawMaterialId, that.rawMaterialId) &&
+                Objects.equals(productsId, that.productsId) &&
+                Objects.equals(productionLineId, that.productionLineId) &&
+                Objects.equals(projectsId, that.projectsId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, qtyRequired, reqDate, isProd, status, distinct);
+        return Objects.hash(id, qtyRequired, reqDate, isProd, status, rawMaterialId, productsId, productionLineId, projectsId ,distinct);
     }
 
     // prettier-ignore
@@ -183,6 +250,10 @@ public class StockRequestCriteria implements Serializable, Criteria {
             (reqDate != null ? "reqDate=" + reqDate + ", " : "") +
             (isProd != null ? "isProd=" + isProd + ", " : "") +
             (status != null ? "status=" + status + ", " : "") +
+            (rawMaterialId != null ? "rawMaterial=" + rawMaterialId + ", " : "") +
+            (productsId != null ? "productsId=" + productsId + ", " : "") +
+            (productionLineId != null ? "productionLineId=" + productionLineId + ", " : "") +
+            (projectsId != null ? "projectsId=" + projectsId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

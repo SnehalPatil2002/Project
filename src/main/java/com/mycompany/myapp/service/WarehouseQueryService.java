@@ -108,6 +108,15 @@ public class WarehouseQueryService extends QueryService<Warehouse> {
             if (criteria.getManagerEmail() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getManagerEmail(), Warehouse_.managerEmail));
             }
+            if (criteria.getRawMaterialId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(
+                            criteria.getRawMaterialId(),
+                            root -> root.join(Warehouse_.rawMaterials, JoinType.LEFT).get(String.valueOf(RawMaterial_.id))
+                        )
+                    );
+            }
         }
         return specification;
     }

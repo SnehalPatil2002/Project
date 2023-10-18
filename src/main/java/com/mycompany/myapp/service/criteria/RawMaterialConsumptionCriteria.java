@@ -28,6 +28,11 @@ public class RawMaterialConsumptionCriteria implements Serializable, Criteria {
     private DoubleFilter scrapGenerated;
 
     private DoubleFilter totalMaterialCost;
+    private LongFilter rawMaterialId;
+    private LongFilter productsId;
+
+    private LongFilter productionLineId;
+    private LongFilter projectsId;
 
     private Boolean distinct;
 
@@ -38,6 +43,10 @@ public class RawMaterialConsumptionCriteria implements Serializable, Criteria {
         this.quantityConsumed = other.quantityConsumed == null ? null : other.quantityConsumed.copy();
         this.scrapGenerated = other.scrapGenerated == null ? null : other.scrapGenerated.copy();
         this.totalMaterialCost = other.totalMaterialCost == null ? null : other.totalMaterialCost.copy();
+        this.rawMaterialId = other.rawMaterialId == null ? null : other.rawMaterialId.copy();
+        this.productsId = other.productsId == null ? null : other.productsId.copy();
+        this.productionLineId = other.productionLineId == null ? null : other.productionLineId.copy();
+        this.projectsId = other.projectsId == null ? null : other.projectsId.copy();
         this.distinct = other.distinct;
     }
 
@@ -106,6 +115,61 @@ public class RawMaterialConsumptionCriteria implements Serializable, Criteria {
         this.totalMaterialCost = totalMaterialCost;
     }
 
+    public LongFilter getRawMaterialId() {
+        return rawMaterialId;
+    }
+
+    public void setRawMaterialId(LongFilter rawMaterial) {
+        this.rawMaterialId = rawMaterial;
+    }
+    public LongFilter rawMaterialId() {
+        if (rawMaterialId == null) {
+            rawMaterialId = new LongFilter();
+        }
+        return rawMaterialId;
+    }
+
+    public LongFilter getProductsId() {
+        return productsId;
+    }
+    public LongFilter productsId(){
+        if(productsId == null){
+            productsId = new LongFilter();
+        }
+        return productsId();
+    }
+
+    public void setProductsId(LongFilter productsId) {
+        this.productsId = productsId;
+    }
+
+    public LongFilter getProductionLineId() {
+        return productionLineId;
+    }
+
+    public void setProductionLineId(LongFilter productionLineId) {
+        this.productionLineId = productionLineId;
+    }
+    public LongFilter productionLineId(){
+        if(productionLineId == null){
+            productionLineId = new LongFilter();
+        }
+        return productionLineId();
+    }
+
+    public LongFilter getProjectsId() {
+        return projectsId;
+    }
+
+    public void setProjectsId(LongFilter projectsId) {
+        this.projectsId = projectsId;
+    }
+    public LongFilter projectsId(){
+        if(projectsId == null){
+            projectsId = new LongFilter();
+        }
+        return projectsId();
+    }
     public Boolean getDistinct() {
         return distinct;
     }
@@ -128,6 +192,10 @@ public class RawMaterialConsumptionCriteria implements Serializable, Criteria {
             Objects.equals(quantityConsumed, that.quantityConsumed) &&
             Objects.equals(scrapGenerated, that.scrapGenerated) &&
             Objects.equals(totalMaterialCost, that.totalMaterialCost) &&
+                Objects.equals(rawMaterialId, that.rawMaterialId) &&
+                Objects.equals(productsId, that.productsId) &&
+                Objects.equals(productionLineId, that.productionLineId) &&
+                Objects.equals(projectsId, that.projectsId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
@@ -145,6 +213,10 @@ public class RawMaterialConsumptionCriteria implements Serializable, Criteria {
             (quantityConsumed != null ? "quantityConsumed=" + quantityConsumed + ", " : "") +
             (scrapGenerated != null ? "scrapGenerated=" + scrapGenerated + ", " : "") +
             (totalMaterialCost != null ? "totalMaterialCost=" + totalMaterialCost + ", " : "") +
+            (rawMaterialId != null ? "rawMaterial=" + rawMaterialId + ", " : "") +
+            (productsId != null ? "productsId=" + productsId + ", " : "") +
+            (productionLineId != null ? "productionLineId=" + productionLineId + ", " : "") +
+            (projectsId != null ? "projectsId=" + projectsId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

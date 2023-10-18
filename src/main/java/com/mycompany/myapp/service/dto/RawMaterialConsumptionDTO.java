@@ -16,6 +16,13 @@ public class RawMaterialConsumptionDTO implements Serializable {
     private Double scrapGenerated;
 
     private Double totalMaterialCost;
+    private RawMaterialDTO rawMaterial;
+
+    private ProductsDTO products;
+
+    private ProductionLineDTO productionLine;
+
+    private ProjectsDTO projects;
 
     public Long getId() {
         return id;
@@ -49,6 +56,37 @@ public class RawMaterialConsumptionDTO implements Serializable {
         this.totalMaterialCost = totalMaterialCost;
     }
 
+    public RawMaterialDTO getRawMaterial() {
+        return rawMaterial;
+    }
+
+    public void setRawMaterial(RawMaterialDTO rawMaterial) {
+        this.rawMaterial = rawMaterial;
+    }
+
+    public ProductsDTO getProducts() {
+        return products;
+    }
+
+    public void setProducts(ProductsDTO products) {
+        this.products = products;
+    }
+
+    public ProductionLineDTO getProductionLine() {
+        return productionLine;
+    }
+
+    public void setProductionLine(ProductionLineDTO productionLine) {
+        this.productionLine = productionLine;
+    }
+
+    public ProjectsDTO getProjects() {
+        return projects;
+    }
+
+    public void setProjects(ProjectsDTO projects) {
+        this.projects = projects;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -78,6 +116,10 @@ public class RawMaterialConsumptionDTO implements Serializable {
             ", quantityConsumed=" + getQuantityConsumed() +
             ", scrapGenerated=" + getScrapGenerated() +
             ", totalMaterialCost=" + getTotalMaterialCost() +
+            ", rawMaterial='" + getRawMaterial() + "'" +
+            ", products='" + getProducts() + "'" +
+            ", productionLine='" + getProductionLine() + "'" +
+            ", projects='" + getProjects() + "'" +
             "}";
     }
 }

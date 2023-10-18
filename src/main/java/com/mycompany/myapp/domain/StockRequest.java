@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mycompany.myapp.domain.enumeration.Status;
 import java.io.Serializable;
 import java.time.Instant;
@@ -33,7 +34,21 @@ public class StockRequest implements Serializable {
     @Column(name = "status")
     private Status status;
 
+
+    @JsonIgnoreProperties(value = { "products", "warehouse" }, allowSetters = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private RawMaterial rawMaterial;
     // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    @JsonIgnoreProperties(value = { "rawMaterials" }, allowSetters = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Products products;
+    @JsonIgnoreProperties(value = { "product" }, allowSetters = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ProductionLine productionLine;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Projects projects;
+
 
     public Long getId() {
         return this.id;
@@ -100,7 +115,47 @@ public class StockRequest implements Serializable {
         this.status = status;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    public RawMaterial getRawMaterial() {
+        return rawMaterial;
+    }
+
+    public void setRawMaterial(RawMaterial rawMaterial) {
+        this.rawMaterial = rawMaterial;
+    }
+
+    public StockRequest rawMaterial(RawMaterial rawMaterial){
+        this.setRawMaterial(rawMaterial);
+        return this;
+    }
+
+    public Products getProducts() {
+        return products;
+    }
+
+    public void setProducts(Products products) {
+        this.products = products;
+    }
+
+    public StockRequest products(Products products){
+        this.setProducts(products);
+        return this;
+    }
+    public ProductionLine getProductionLine() {
+        return productionLine;
+    }
+
+    public void setProductionLine(ProductionLine productionLine) {
+        this.productionLine = productionLine;
+    }
+
+    public Projects getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Projects projects) {
+        this.projects = projects;
+    }
+// jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -127,7 +182,7 @@ public class StockRequest implements Serializable {
             ", qtyRequired=" + getQtyRequired() +
             ", reqDate='" + getReqDate() + "'" +
             ", isProd='" + getIsProd() + "'" +
-            ", status='" + getStatus() + "'" +
+            ", status='" + getStatus() + "'"+
             "}";
     }
 }

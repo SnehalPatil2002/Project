@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mycompany.myapp.domain.enumeration.Status;
 import java.io.Serializable;
 import java.time.Instant;
@@ -32,6 +33,18 @@ public class PurchaseRequest implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
+
+    public RawMaterial getRawMaterial() {
+        return rawMaterial;
+    }
+
+    public void setRawMaterial(RawMaterial rawMaterial) {
+        this.rawMaterial = rawMaterial;
+    }
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "purchaseRequests" }, allowSetters = true)
+    private RawMaterial rawMaterial;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
