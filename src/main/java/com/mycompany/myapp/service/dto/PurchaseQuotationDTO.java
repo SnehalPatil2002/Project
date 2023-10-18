@@ -1,9 +1,14 @@
 package com.mycompany.myapp.service.dto;
 
+import com.mycompany.myapp.domain.Clients;
+import com.mycompany.myapp.domain.PurchaseQuotationDetails;
 import com.mycompany.myapp.domain.enumeration.Status;
+
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DTO for the {@link com.mycompany.myapp.domain.PurchaseQuotation} entity.
@@ -24,8 +29,30 @@ public class PurchaseQuotationDTO implements Serializable {
     private Instant expectedDeliveryDate;
 
     private Status orderStatus;
+    
+    private ClientsDTO clients;    
+    
 
-    public Long getId() {
+//	private Set<PurchaseQuotationDetailsDTO> purchaseQuotationDetails = new HashSet<>();
+	//private PurchaseQuotationDetailsDTO purchaseQuotationDetails;
+
+    public ClientsDTO getClients() {
+		return clients;
+	}
+
+	public void setClients(ClientsDTO clients) {
+		this.clients = clients;
+	}
+	
+//	public Set<PurchaseQuotationDetailsDTO> getPurchaseQuotationDetails() {
+//		return purchaseQuotationDetails;
+//	}
+//
+//	public void setPurchaseQuotationDetails(Set<PurchaseQuotationDetailsDTO> purchaseQuotationDetails) {
+//		this.purchaseQuotationDetails = purchaseQuotationDetails;
+//	}
+
+	public Long getId() {
         return id;
     }
 
@@ -80,6 +107,14 @@ public class PurchaseQuotationDTO implements Serializable {
     public void setOrderStatus(Status orderStatus) {
         this.orderStatus = orderStatus;
     }
+//    public PurchaseQuotationDetailsDTO getPurchaseQuotationDetails() {
+//		return purchaseQuotationDetails;
+//	}
+//
+//	public void setPurchaseQuotationDetails(PurchaseQuotationDetailsDTO purchaseQuotationDetails) {
+//		this.purchaseQuotationDetails = purchaseQuotationDetails;
+//	}
+	
 
     @Override
     public boolean equals(Object o) {
@@ -113,6 +148,10 @@ public class PurchaseQuotationDTO implements Serializable {
             ", poDate='" + getPoDate() + "'" +
             ", expectedDeliveryDate='" + getExpectedDeliveryDate() + "'" +
             ", orderStatus='" + getOrderStatus() + "'" +
+            ", clients=" + getClients()+ 
+//            ", purchaseQuotationDetails=" + getPurchaseQuotationDetails() +
             "}";
     }
+
+	
 }

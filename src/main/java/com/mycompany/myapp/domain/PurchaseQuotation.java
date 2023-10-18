@@ -3,6 +3,9 @@ package com.mycompany.myapp.domain;
 import com.mycompany.myapp.domain.enumeration.Status;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 /**
@@ -39,9 +42,58 @@ public class PurchaseQuotation implements Serializable {
     @Column(name = "order_status")
     private Status orderStatus;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Clients clients;
+    
+    //@OneToMany(mappedBy = "purchaseQuotation")
+   // private PurchaseQuotationDetails purchaseQuotationDetails;
+//   
+//    @OneToMany(mappedBy = "purchaseQuotation")
+//    private Set<PurchaseQuotationDetails> purchaseQuotationDetails = new HashSet<>();
+    
 
-    public Long getId() {
+//	public PurchaseQuotationDetails getPurchaseQuotationDetails() {
+//		return purchaseQuotationDetails;
+//	}
+//
+//	public void setPurchaseQuotationDetails(PurchaseQuotationDetails purchaseQuotationDetails) {
+//		this.purchaseQuotationDetails = purchaseQuotationDetails;
+//	}
+//
+//	public Set<PurchaseQuotationDetails> getPurchaseQuotationDetails() {
+//		return purchaseQuotationDetails;
+//	}
+//
+//	public void setPurchaseQuotationDetails(Set<PurchaseQuotationDetails> purchaseQuotationDetails) {
+//		 if (this.purchaseQuotationDetails != null) {
+//	            this.purchaseQuotationDetails.forEach(i -> i.setPurchaseQuotation(null));
+//	        }
+//	        if (purchaseQuotationDetails != null) {
+//	        	purchaseQuotationDetails.forEach(i -> i.setPurchaseQuotation(this));
+//	        }
+//	        this.purchaseQuotationDetails = purchaseQuotationDetails;
+//	}
+//	
+//	public PurchaseQuotation purchaseQuotationDetails(Set<PurchaseQuotationDetails> purchaseQuotationDetails) {
+//	        this.setPurchaseQuotationDetails(purchaseQuotationDetails);
+//	        return this;
+//	}
+	 
+
+	public Clients getClients() {
+		return clients;
+	}
+
+	public void setClients(Clients clients) {
+		this.clients = clients;
+	}
+	
+	public PurchaseQuotation clients(Clients clients) {
+	        this.setClients(clients);
+	        return this;
+	}
+
+	public Long getId() {
         return this.id;
     }
 

@@ -1,7 +1,6 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.*; // for static metamodels
-import com.mycompany.myapp.domain.OrderRecieved;
 import com.mycompany.myapp.repository.OrderRecievedRepository;
 import com.mycompany.myapp.service.criteria.OrderRecievedCriteria;
 import com.mycompany.myapp.service.dto.OrderRecievedDTO;
@@ -114,6 +113,12 @@ public class OrderRecievedQueryService extends QueryService<OrderRecieved> {
             }
             if (criteria.getQtyRejected() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getQtyRejected(), OrderRecieved_.qtyRejected));
+            }
+            if (criteria.getPurchaseQuotationId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(criteria.getPurchaseQuotationId(), root -> root.join(OrderRecieved_.purchaseQuotation, JoinType.LEFT).get(PurchaseQuotation_.id))
+                    );
             }
         }
         return specification;

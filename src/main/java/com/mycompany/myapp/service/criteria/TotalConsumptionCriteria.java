@@ -28,6 +28,10 @@ public class TotalConsumptionCriteria implements Serializable, Criteria {
     private DoubleFilter totalProductsCost;
 
     private DoubleFilter finalCost;
+    
+	private LongFilter projectsId;
+    
+    private LongFilter productsId;
 
     private Boolean distinct;
 
@@ -114,6 +118,22 @@ public class TotalConsumptionCriteria implements Serializable, Criteria {
         this.distinct = distinct;
     }
 
+    public LongFilter getProjectsId() {
+		return projectsId;
+	}
+
+	public void setProjectsId(LongFilter projectsId) {
+		this.projectsId = projectsId;
+	}
+
+	public LongFilter getProductsId() {
+		return productsId;
+	}
+
+	public void setProductsId(LongFilter productsId) {
+		this.productsId = productsId;
+	}
+	
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -128,13 +148,15 @@ public class TotalConsumptionCriteria implements Serializable, Criteria {
             Objects.equals(totalMaterialCost, that.totalMaterialCost) &&
             Objects.equals(totalProductsCost, that.totalProductsCost) &&
             Objects.equals(finalCost, that.finalCost) &&
+            Objects.equals(projectsId, that.projectsId) &&
+            Objects.equals(productsId, that.productsId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, totalMaterialCost, totalProductsCost, finalCost, distinct);
+        return Objects.hash(id, totalMaterialCost, totalProductsCost, finalCost, projectsId,productsId,distinct);
     }
 
     // prettier-ignore
@@ -145,6 +167,8 @@ public class TotalConsumptionCriteria implements Serializable, Criteria {
             (totalMaterialCost != null ? "totalMaterialCost=" + totalMaterialCost + ", " : "") +
             (totalProductsCost != null ? "totalProductsCost=" + totalProductsCost + ", " : "") +
             (finalCost != null ? "finalCost=" + finalCost + ", " : "") +
+            (projectsId != null ? "projectsId=" + projectsId + ", " : "") +
+            (productsId != null ? "productsId=" + productsId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

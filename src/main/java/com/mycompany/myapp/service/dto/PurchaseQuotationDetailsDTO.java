@@ -20,8 +20,28 @@ public class PurchaseQuotationDetailsDTO implements Serializable {
     private Double totalPrice;
 
     private Double discount;
+    
+    private RawMaterialDTO rawMaterial;
+    
+    private PurchaseQuotationDTO purchaseQuotation;
 
-    public Long getId() {
+    public PurchaseQuotationDTO getPurchaseQuotation() {
+		return purchaseQuotation;
+	}
+
+	public void setPurchaseQuotation(PurchaseQuotationDTO purchaseQuotation) {
+		this.purchaseQuotation = purchaseQuotation;
+	}
+
+	public RawMaterialDTO getRawMaterial() {
+		return rawMaterial;
+	}
+
+	public void setRawMaterial(RawMaterialDTO rawMaterial) {
+		this.rawMaterial = rawMaterial;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -100,6 +120,8 @@ public class PurchaseQuotationDetailsDTO implements Serializable {
             ", pricePerUnit=" + getPricePerUnit() +
             ", totalPrice=" + getTotalPrice() +
             ", discount=" + getDiscount() +
+            ", rawMaterial=" + getRawMaterial() +
+            ", purchaseQuotation=" + getPurchaseQuotation()+
             "}";
     }
 }

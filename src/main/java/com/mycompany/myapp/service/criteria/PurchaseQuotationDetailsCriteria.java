@@ -32,8 +32,12 @@ public class PurchaseQuotationDetailsCriteria implements Serializable, Criteria 
     private DoubleFilter totalPrice;
 
     private DoubleFilter discount;
+    
+    private LongFilter rawMaterialId;
+    
+    private LongFilter purchaseQuotationId;
 
-    private Boolean distinct;
+	private Boolean distinct;
 
     public PurchaseQuotationDetailsCriteria() {}
 
@@ -150,6 +154,29 @@ public class PurchaseQuotationDetailsCriteria implements Serializable, Criteria 
         this.distinct = distinct;
     }
 
+    public LongFilter getRawMaterialId() {
+		return rawMaterialId;
+	}
+
+	public void setRawMaterialId(LongFilter rawMaterialId) {
+		this.rawMaterialId = rawMaterialId;
+	}
+
+	 public LongFilter rawMaterialId() {
+	        if (rawMaterialId == null) {
+	        	rawMaterialId = new LongFilter();
+	        }
+	        return rawMaterialId;
+	   }
+	 public LongFilter getPurchaseQuotationId() {
+			return purchaseQuotationId;
+		}
+
+	public void setPurchaseQuotationId(LongFilter purchaseQuotationId) {
+		this.purchaseQuotationId = purchaseQuotationId;
+	}
+	 
+	
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -166,13 +193,15 @@ public class PurchaseQuotationDetailsCriteria implements Serializable, Criteria 
             Objects.equals(pricePerUnit, that.pricePerUnit) &&
             Objects.equals(totalPrice, that.totalPrice) &&
             Objects.equals(discount, that.discount) &&
+            Objects.equals(rawMaterialId, that.rawMaterialId) &&
+            Objects.equals(purchaseQuotationId, that.purchaseQuotationId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, qtyOrdered, gstTaxPercentage, pricePerUnit, totalPrice, discount, distinct);
+        return Objects.hash(id, qtyOrdered, gstTaxPercentage, pricePerUnit, totalPrice, discount,rawMaterialId,purchaseQuotationId, distinct);
     }
 
     // prettier-ignore
@@ -185,6 +214,8 @@ public class PurchaseQuotationDetailsCriteria implements Serializable, Criteria 
             (pricePerUnit != null ? "pricePerUnit=" + pricePerUnit + ", " : "") +
             (totalPrice != null ? "totalPrice=" + totalPrice + ", " : "") +
             (discount != null ? "discount=" + discount + ", " : "") +
+            (rawMaterialId != null ? "rawMaterialId" + rawMaterialId + ", " : "") +
+            (purchaseQuotationId != null ? "purchaseQuotationId" + purchaseQuotationId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

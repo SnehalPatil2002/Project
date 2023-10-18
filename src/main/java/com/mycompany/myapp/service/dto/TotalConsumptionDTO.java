@@ -16,6 +16,10 @@ public class TotalConsumptionDTO implements Serializable {
     private Double totalProductsCost;
 
     private Double finalCost;
+    
+    private ProjectsDTO projects; 
+    
+    private ProductsDTO products; 
 
     public Long getId() {
         return id;
@@ -48,6 +52,23 @@ public class TotalConsumptionDTO implements Serializable {
     public void setFinalCost(Double finalCost) {
         this.finalCost = finalCost;
     }
+    
+    public ProjectsDTO getProjects() {
+		return projects;
+	}
+
+	public void setProjects(ProjectsDTO projects) {
+		this.projects = projects;
+	}
+
+	public ProductsDTO getProducts() {
+		return products;
+	}
+
+	public void setProducts(ProductsDTO products) {
+		this.products = products;
+	}
+
 
     @Override
     public boolean equals(Object o) {
@@ -78,6 +99,9 @@ public class TotalConsumptionDTO implements Serializable {
             ", totalMaterialCost=" + getTotalMaterialCost() +
             ", totalProductsCost=" + getTotalProductsCost() +
             ", finalCost=" + getFinalCost() +
+            ", Projects=" + getProjects() +
+            ", Products=" + getProducts() +
+            
             "}";
     }
 }
