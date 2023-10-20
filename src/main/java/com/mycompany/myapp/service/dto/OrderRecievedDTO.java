@@ -27,6 +27,17 @@ public class OrderRecievedDTO implements Serializable {
     private Double qtyApproved;
 
     private Double qtyRejected;
+    
+    private PurchaseQuotationDTO purchaseQuotation;
+
+    public PurchaseQuotationDTO getPurchaseQuotation() {
+		return purchaseQuotation;
+	}
+
+	public void setPurchaseQuotation(PurchaseQuotationDTO purchaseQuotation) {
+		this.purchaseQuotation = purchaseQuotation;
+	}
+
 
     public Long getId() {
         return id;
@@ -134,6 +145,7 @@ public class OrderRecievedDTO implements Serializable {
             ", expiryDate='" + getExpiryDate() + "'" +
             ", qtyApproved=" + getQtyApproved() +
             ", qtyRejected=" + getQtyRejected() +
+            ", purchaseQuotation=" + getPurchaseQuotation()+
             "}";
     }
 }

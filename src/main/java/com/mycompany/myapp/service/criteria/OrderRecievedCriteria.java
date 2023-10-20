@@ -38,6 +38,8 @@ public class OrderRecievedCriteria implements Serializable, Criteria {
     private DoubleFilter qtyApproved;
 
     private DoubleFilter qtyRejected;
+    
+    private LongFilter purchaseQuotationId;
 
     private Boolean distinct;
 
@@ -196,6 +198,13 @@ public class OrderRecievedCriteria implements Serializable, Criteria {
         this.qtyRejected = qtyRejected;
     }
 
+    public LongFilter getPurchaseQuotationId() {
+		return purchaseQuotationId;
+	}
+
+	public void setPurchaseQuotationId(LongFilter purchaseQuotationId) {
+		this.purchaseQuotationId = purchaseQuotationId;
+	}
     public Boolean getDistinct() {
         return distinct;
     }
@@ -223,6 +232,7 @@ public class OrderRecievedCriteria implements Serializable, Criteria {
             Objects.equals(expiryDate, that.expiryDate) &&
             Objects.equals(qtyApproved, that.qtyApproved) &&
             Objects.equals(qtyRejected, that.qtyRejected) &&
+            Objects.equals(purchaseQuotationId, that.purchaseQuotationId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
@@ -239,6 +249,7 @@ public class OrderRecievedCriteria implements Serializable, Criteria {
             expiryDate,
             qtyApproved,
             qtyRejected,
+            purchaseQuotationId,
             distinct
         );
     }
@@ -256,6 +267,7 @@ public class OrderRecievedCriteria implements Serializable, Criteria {
             (expiryDate != null ? "expiryDate=" + expiryDate + ", " : "") +
             (qtyApproved != null ? "qtyApproved=" + qtyApproved + ", " : "") +
             (qtyRejected != null ? "qtyRejected=" + qtyRejected + ", " : "") +
+            (purchaseQuotationId != null ? "purchaseQuotationId=" + purchaseQuotationId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

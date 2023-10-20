@@ -42,8 +42,17 @@ public class OrderRecieved implements Serializable {
 
     @Column(name = "qty_rejected")
     private Double qtyRejected;
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    private PurchaseQuotation purchaseQuotation; 
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+    public PurchaseQuotation getPurchaseQuotation() {
+		return purchaseQuotation;
+	}
+
+	public void setPurchaseQuotation(PurchaseQuotation purchaseQuotation) {
+		this.purchaseQuotation = purchaseQuotation;
+	}
 
     public Long getId() {
         return this.id;

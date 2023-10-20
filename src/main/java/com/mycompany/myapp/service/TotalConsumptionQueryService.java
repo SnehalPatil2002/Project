@@ -1,7 +1,6 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.*; // for static metamodels
-import com.mycompany.myapp.domain.TotalConsumption;
 import com.mycompany.myapp.repository.TotalConsumptionRepository;
 import com.mycompany.myapp.service.criteria.TotalConsumptionCriteria;
 import com.mycompany.myapp.service.dto.TotalConsumptionDTO;
@@ -103,6 +102,20 @@ public class TotalConsumptionQueryService extends QueryService<TotalConsumption>
             }
             if (criteria.getFinalCost() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getFinalCost(), TotalConsumption_.finalCost));
+            }
+            
+            if (criteria.getProjectsId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(criteria.getProjectsId(), root -> root.join(TotalConsumption_.projects, JoinType.LEFT).get(Projects_.id))
+                    );
+            }
+            
+            if (criteria.getProductsId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(criteria.getProductsId(), root -> root.join(TotalConsumption_.products, JoinType.LEFT).get(Products_.id))
+                    );
             }
         }
         return specification;

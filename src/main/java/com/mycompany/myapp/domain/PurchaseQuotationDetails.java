@@ -33,9 +33,34 @@ public class PurchaseQuotationDetails implements Serializable {
     @Column(name = "discount")
     private Double discount;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+    @ManyToOne(fetch=FetchType.LAZY)
+    private RawMaterial rawMaterial;
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    private PurchaseQuotation purchaseQuotation;
 
-    public Long getId() {
+    public PurchaseQuotation getPurchaseQuotation() {
+		return purchaseQuotation;
+	}
+
+	public void setPurchaseQuotation(PurchaseQuotation purchaseQuotation) {
+		this.purchaseQuotation = purchaseQuotation;
+	}
+
+	public RawMaterial getRawMaterial() {
+		return rawMaterial;
+	}
+
+	public void setRawMaterial(RawMaterial rawmaterial) {
+		this.rawMaterial = rawmaterial;
+	}
+	
+	public PurchaseQuotationDetails rawMaterial(RawMaterial rawMaterial) {
+        this.setRawMaterial(rawMaterial);
+        return this;
+}
+
+	public Long getId() {
         return this.id;
     }
 

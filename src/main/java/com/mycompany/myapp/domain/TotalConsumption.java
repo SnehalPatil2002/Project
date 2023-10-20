@@ -27,8 +27,29 @@ public class TotalConsumption implements Serializable {
     @Column(name = "final_cost")
     private Double finalCost;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+    @ManyToOne(fetch=FetchType.LAZY)
+    private Projects projects;
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    private Products products;
+    
+    
+    public Projects getProjects() {
+		return projects;
+	}
 
+	public void setProjects(Projects projects) {
+		this.projects = projects;
+	}
+
+	public Products getProducts() {
+		return products;
+	}
+
+	public void setProducts(Products products) {
+		this.products = products;
+	}
+   
     public Long getId() {
         return this.id;
     }
