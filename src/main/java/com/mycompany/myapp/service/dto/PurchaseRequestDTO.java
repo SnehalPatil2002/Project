@@ -21,6 +21,16 @@ public class PurchaseRequestDTO implements Serializable {
 
     private Status status;
 
+    public RawMaterialDTO getRawMaterial() {
+        return rawMaterial;
+    }
+
+    public void setRawMaterial(RawMaterialDTO rawMaterial) {
+        this.rawMaterial = rawMaterial;
+    }
+
+    private RawMaterialDTO rawMaterial;
+
     public Long getId() {
         return id;
     }
@@ -91,6 +101,7 @@ public class PurchaseRequestDTO implements Serializable {
             ", requestDate='" + getRequestDate() + "'" +
             ", expectedDate='" + getExpectedDate() + "'" +
             ", status='" + getStatus() + "'" +
+            ", rawmaterial'" + getRawMaterial() + "'" +
             "}";
     }
 }

@@ -34,6 +34,7 @@ public class WarehouseCriteria implements Serializable, Criteria {
     private StringFilter managerName;
 
     private StringFilter managerEmail;
+    private LongFilter rawMaterialId;
 
     private Boolean distinct;
 
@@ -47,6 +48,7 @@ public class WarehouseCriteria implements Serializable, Criteria {
         this.city = other.city == null ? null : other.city.copy();
         this.managerName = other.managerName == null ? null : other.managerName.copy();
         this.managerEmail = other.managerEmail == null ? null : other.managerEmail.copy();
+        this.rawMaterialId = other.rawMaterialId == null ? null : other.rawMaterialId.copy();
         this.distinct = other.distinct;
     }
 
@@ -160,6 +162,21 @@ public class WarehouseCriteria implements Serializable, Criteria {
         this.managerEmail = managerEmail;
     }
 
+    public LongFilter getRawMaterialId() {
+        return rawMaterialId;
+    }
+
+    public LongFilter rawMaterialId() {
+        if (rawMaterialId == null) {
+            rawMaterialId = new LongFilter();
+        }
+        return rawMaterialId;
+    }
+
+    public void setRawMaterialId(LongFilter rawMaterialId) {
+        this.rawMaterialId = rawMaterialId;
+    }
+
     public Boolean getDistinct() {
         return distinct;
     }
@@ -184,7 +201,7 @@ public class WarehouseCriteria implements Serializable, Criteria {
             Objects.equals(pincode, that.pincode) &&
             Objects.equals(city, that.city) &&
             Objects.equals(managerName, that.managerName) &&
-            Objects.equals(managerEmail, that.managerEmail) &&
+            Objects.equals(managerEmail, that.managerEmail) && Objects.equals(rawMaterialId, that.rawMaterialId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
@@ -205,6 +222,7 @@ public class WarehouseCriteria implements Serializable, Criteria {
             (city != null ? "city=" + city + ", " : "") +
             (managerName != null ? "managerName=" + managerName + ", " : "") +
             (managerEmail != null ? "managerEmail=" + managerEmail + ", " : "") +
+            (rawMaterialId != null ? "rawMaterialId=" + rawMaterialId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

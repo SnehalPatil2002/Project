@@ -27,6 +27,12 @@ public class ProductConsumptionCriteria implements Serializable, Criteria {
 
     private DoubleFilter totalProductsCost;
 
+    private LongFilter projectsId;
+
+    //private LongFilter productId;
+
+    private LongFilter productsId;
+
     private Boolean distinct;
 
     public ProductConsumptionCriteria() {}
@@ -35,6 +41,9 @@ public class ProductConsumptionCriteria implements Serializable, Criteria {
         this.id = other.id == null ? null : other.id.copy();
         this.quantityConsumed = other.quantityConsumed == null ? null : other.quantityConsumed.copy();
         this.totalProductsCost = other.totalProductsCost == null ? null : other.totalProductsCost.copy();
+        this.projectsId = other.projectsId == null ? null : other.projectsId.copy();
+        ///this.productId = other.productId == null ? null : other.productId.copy();
+        this.productsId = other.productsId == null ? null : other.productsId.copy();
         this.distinct = other.distinct;
     }
 
@@ -88,6 +97,51 @@ public class ProductConsumptionCriteria implements Serializable, Criteria {
         this.totalProductsCost = totalProductsCost;
     }
 
+    public LongFilter getProjectsId() {
+        return projectsId;
+    }
+
+    public void setProjectsId(LongFilter projects) {
+        this.projectsId = projects;
+    }
+
+    public LongFilter projectsId(){
+        if(projectsId == null){
+            projectsId = new LongFilter();
+        }
+        return projectsId;
+    }
+
+//    public LongFilter getProductId() {
+//        return productId;
+//    }
+//
+//    public void setProductId(LongFilter product) {
+//        this.productId = product;
+//    }
+//
+//    public LongFilter productId(){
+//        if(productId == null){
+//            productId = new LongFilter();
+//        }
+//        return productId;
+//    }
+
+    public LongFilter getProductsId() {
+        return productsId;
+    }
+
+    public void setProductsId(LongFilter products) {
+        this.productsId = products;
+    }
+
+    public LongFilter productsId(){
+        if(productsId == null){
+            productsId = new LongFilter();
+        }
+        return productsId;
+    }
+
     public Boolean getDistinct() {
         return distinct;
     }
@@ -109,13 +163,16 @@ public class ProductConsumptionCriteria implements Serializable, Criteria {
             Objects.equals(id, that.id) &&
             Objects.equals(quantityConsumed, that.quantityConsumed) &&
             Objects.equals(totalProductsCost, that.totalProductsCost) &&
+                Objects.equals(projectsId, that.projectsId) &&
+               // Objects.equals(productId, that.productId) &&
+                Objects.equals(productsId, that.productsId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, quantityConsumed, totalProductsCost, distinct);
+        return Objects.hash(id, quantityConsumed, totalProductsCost, projectsId, productsId,distinct);
     }
 
     // prettier-ignore
@@ -125,6 +182,9 @@ public class ProductConsumptionCriteria implements Serializable, Criteria {
             (id != null ? "id=" + id + ", " : "") +
             (quantityConsumed != null ? "quantityConsumed=" + quantityConsumed + ", " : "") +
             (totalProductsCost != null ? "totalProductsCost=" + totalProductsCost + ", " : "") +
+            (projectsId != null ? "projectsId=" + projectsId + ", " : "") +
+           // (productId != null ? "productId=" + productId + ", " : "") +
+            (productsId != null ? "productsId=" + productsId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

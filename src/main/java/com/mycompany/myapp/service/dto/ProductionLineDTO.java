@@ -15,6 +15,8 @@ public class ProductionLineDTO implements Serializable {
 
     private Boolean isActive;
 
+    private ProductsDTO products;
+
     public Long getId() {
         return id;
     }
@@ -37,6 +39,14 @@ public class ProductionLineDTO implements Serializable {
 
     public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
+    }
+
+    public ProductsDTO getProducts() {
+        return products;
+    }
+
+    public void setProducts(ProductsDTO product) {
+        this.products = product;
     }
 
     @Override

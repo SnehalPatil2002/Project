@@ -111,6 +111,13 @@ public class ProductsQueryService extends QueryService<Products> {
                         )
                     );
             }
+            if (criteria.getUsedForProductsId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(criteria.getUsedForProductsId(), root -> root.join(Products_.usedForProducts, JoinType.LEFT).get(Products_.id))
+                    );
+            }
+
         }
         return specification;
     }

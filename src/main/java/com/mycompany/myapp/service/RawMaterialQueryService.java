@@ -120,6 +120,16 @@ public class RawMaterialQueryService extends QueryService<RawMaterial> {
                         )
                     );
             }
+            if (criteria.getWarehouseId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(
+                            criteria.getWarehouseId(),
+                            root -> root.join(RawMaterial_.warehouse, JoinType.LEFT).get(Warehouse_.id)
+                        )
+                    );
+            }
+
         }
         return specification;
     }

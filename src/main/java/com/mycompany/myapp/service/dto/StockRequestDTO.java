@@ -1,5 +1,6 @@
 package com.mycompany.myapp.service.dto;
 
+import com.mycompany.myapp.domain.RawMaterial;
 import com.mycompany.myapp.domain.enumeration.Status;
 import java.io.Serializable;
 import java.time.Instant;
@@ -20,6 +21,14 @@ public class StockRequestDTO implements Serializable {
     private Boolean isProd;
 
     private Status status;
+
+    private RawMaterialDTO rawMaterial;
+
+    private ProductsDTO products;
+
+    private ProductionLineDTO productionLine;
+
+    private ProjectsDTO projects;
 
     public Long getId() {
         return id;
@@ -61,6 +70,38 @@ public class StockRequestDTO implements Serializable {
         this.status = status;
     }
 
+    public RawMaterialDTO getRawMaterial() {
+        return rawMaterial;
+    }
+
+    public void setRawMaterial(RawMaterialDTO rawMaterial) {
+        this.rawMaterial = rawMaterial;
+    }
+
+    public ProductsDTO getProducts() {
+        return products;
+    }
+
+    public void setProducts(ProductsDTO products) {
+        this.products = products;
+    }
+
+    public ProductionLineDTO getProductionLine() {
+        return productionLine;
+    }
+
+    public void setProductionLine(ProductionLineDTO productionLine) {
+        this.productionLine = productionLine;
+    }
+
+    public ProjectsDTO getProjects() {
+        return projects;
+    }
+
+    public void setProjects(ProjectsDTO projects) {
+        this.projects = projects;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -91,6 +132,10 @@ public class StockRequestDTO implements Serializable {
             ", reqDate='" + getReqDate() + "'" +
             ", isProd='" + getIsProd() + "'" +
             ", status='" + getStatus() + "'" +
+            ", rawMaterial='" + getRawMaterial() + "'" +
+            ", products='" + getProducts() + "'" +
+            ", productionLine='" + getProductionLine() + "'" +
+            ", projects='" + getProjects() + "'" +
             "}";
     }
 }

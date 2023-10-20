@@ -102,6 +102,18 @@ public class StockRequestQueryService extends QueryService<StockRequest> {
             if (criteria.getStatus() != null) {
                 specification = specification.and(buildSpecification(criteria.getStatus(), StockRequest_.status));
             }
+            if(criteria.getRawMaterialId() != null){
+                specification = specification.and(buildSpecification(criteria.getRawMaterialId(),root -> root.join(StockRequest_.rawMaterial, JoinType.LEFT).get(RawMaterial_.id)));
+            }
+            if(criteria.getProductsId() != null){
+                specification = specification.and(buildSpecification(criteria.getProductsId(),root -> root.join(StockRequest_.products, JoinType.LEFT).get(Products_.id)));
+            }
+            if(criteria.getProductionLineId() != null){
+                specification = specification.and(buildSpecification(criteria.getProductionLineId(),root -> root.join(StockRequest_.productionLine, JoinType.LEFT).get(ProductionLine_.id)));
+            }
+            if(criteria.getProjectsId() != null){
+                specification = specification.and(buildSpecification(criteria.getProjectsId(),root -> root.join(StockRequest_.projects, JoinType.LEFT).get(Projects_.id)));
+            }
         }
         return specification;
     }

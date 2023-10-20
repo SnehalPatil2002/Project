@@ -1,5 +1,7 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -24,6 +26,10 @@ public class ProductionLine implements Serializable {
     @Column(name = "is_active")
     private Boolean isActive;
 
+    @JsonIgnoreProperties(value = { "rawMaterials" }, allowSetters = true)
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Products products;
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -65,6 +71,19 @@ public class ProductionLine implements Serializable {
         this.isActive = isActive;
     }
 
+    public Products getProducts() {
+        return products;
+    }
+
+    public void setProducts(Products product) {
+        this.products = product;
+    }
+
+    public ProductionLine products(Products product){
+        this.setProducts(product);
+        return this;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -91,6 +110,7 @@ public class ProductionLine implements Serializable {
             "id=" + getId() +
             ", description='" + getDescription() + "'" +
             ", isActive='" + getIsActive() + "'" +
+            ", products='" + getProducts() + "'" +
             "}";
     }
 }

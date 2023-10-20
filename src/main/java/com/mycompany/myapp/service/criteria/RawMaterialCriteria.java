@@ -56,6 +56,7 @@ public class RawMaterialCriteria implements Serializable, Criteria {
     private DoubleFilter reorderPoint;
 
     private LongFilter productsId;
+    private LongFilter warehouseId;
 
     private Boolean distinct;
 
@@ -71,6 +72,7 @@ public class RawMaterialCriteria implements Serializable, Criteria {
         this.gstPercentage = other.gstPercentage == null ? null : other.gstPercentage.copy();
         this.reorderPoint = other.reorderPoint == null ? null : other.reorderPoint.copy();
         this.productsId = other.productsId == null ? null : other.productsId.copy();
+        this.warehouseId = other.warehouseId == null ? null : other.warehouseId.copy();
         this.distinct = other.distinct;
     }
 
@@ -214,6 +216,21 @@ public class RawMaterialCriteria implements Serializable, Criteria {
         this.productsId = productsId;
     }
 
+    public LongFilter getWarehouseId() {
+        return warehouseId;
+    }
+
+    public LongFilter warehouseId() {
+        if (warehouseId == null) {
+            warehouseId = new LongFilter();
+        }
+        return warehouseId;
+    }
+
+    public void setWarehouseId(LongFilter warehouseId) {
+        this.warehouseId = warehouseId;
+    }
+
     public Boolean getDistinct() {
         return distinct;
     }
@@ -241,13 +258,14 @@ public class RawMaterialCriteria implements Serializable, Criteria {
             Objects.equals(gstPercentage, that.gstPercentage) &&
             Objects.equals(reorderPoint, that.reorderPoint) &&
             Objects.equals(productsId, that.productsId) &&
+                Objects.equals(warehouseId, that.warehouseId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, barcode, quantity, unitPrice, unitMeasure, gstPercentage, reorderPoint, productsId, distinct);
+        return Objects.hash(id, name, barcode, quantity, unitPrice, unitMeasure, gstPercentage, reorderPoint, productsId,warehouseId, distinct);
     }
 
     // prettier-ignore
@@ -263,6 +281,7 @@ public class RawMaterialCriteria implements Serializable, Criteria {
             (gstPercentage != null ? "gstPercentage=" + gstPercentage + ", " : "") +
             (reorderPoint != null ? "reorderPoint=" + reorderPoint + ", " : "") +
             (productsId != null ? "productsId=" + productsId + ", " : "") +
+            (warehouseId != null ? "warehouseId=" + warehouseId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

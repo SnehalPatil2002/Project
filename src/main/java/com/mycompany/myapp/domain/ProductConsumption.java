@@ -1,5 +1,7 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -23,6 +25,18 @@ public class ProductConsumption implements Serializable {
 
     @Column(name = "total_products_cost")
     private Double totalProductsCost;
+
+    @JsonIgnoreProperties(value = {"projects"}, allowSetters = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    Projects projects;
+
+//    @JsonIgnoreProperties(value = {"products"}, allowSetters = true)
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    Products product;
+
+   // @JsonIgnoreProperties(value = {"products"}, allowSetters = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    Products products;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -65,6 +79,43 @@ public class ProductConsumption implements Serializable {
         this.totalProductsCost = totalProductsCost;
     }
 
+    public Projects getProjects() {
+        return projects;
+    }
+
+    public ProductConsumption projects(Projects projects){
+        this.setProjects(projects);
+        return this;
+    }
+    public void setProjects(Projects projects) {
+        this.projects = projects;
+    }
+
+//    public Products getProduct() {
+//        return product;
+//    }
+//
+//    public ProductConsumption product(Products product){
+//        this.setProduct(product);
+//        return this;
+//    }
+//
+//    public void setProduct(Products product) {
+//        this.product = product;
+//    }
+
+    public Products getProducts() {
+        return products;
+    }
+
+    public ProductConsumption products(Products products){
+        this.setProducts(products);
+        return this;
+    }
+    public void setProducts(Products products) {
+        this.products = products;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -91,6 +142,9 @@ public class ProductConsumption implements Serializable {
             "id=" + getId() +
             ", quantityConsumed=" + getQuantityConsumed() +
             ", totalProductsCost=" + getTotalProductsCost() +
+            ", products= " + getProducts() +
+           // ", product= " + getProduct() +
+            ", projects= " + getProjects() +
             "}";
     }
 }

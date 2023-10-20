@@ -101,6 +101,15 @@ public class ProductConsumptionQueryService extends QueryService<ProductConsumpt
                 specification =
                     specification.and(buildRangeSpecification(criteria.getTotalProductsCost(), ProductConsumption_.totalProductsCost));
             }
+            if(criteria.getProductsId() != null){
+                specification = specification.and(buildSpecification(criteria.getProductsId(),root -> root.join(ProductConsumption_.products, JoinType.LEFT).get(Products_.id)));
+            }
+//            if(criteria.getProductsId() != null){
+//                specification = specification.and(buildSpecification(criteria.getProductId(),root -> root.join(ProductConsumption_.product, JoinType.LEFT).get(Products_.id)));
+//            }
+            if(criteria.getProjectsId() != null){
+                specification = specification.and(buildSpecification(criteria.getProjectsId(),root -> root.join(ProductConsumption_.projects, JoinType.LEFT).get(Projects_.id)));
+            }
         }
         return specification;
     }
