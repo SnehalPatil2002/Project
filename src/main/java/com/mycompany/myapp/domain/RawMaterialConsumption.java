@@ -3,6 +3,7 @@ package com.mycompany.myapp.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+import java.time.Instant;
 import javax.persistence.*;
 
 /**
@@ -28,6 +29,9 @@ public class RawMaterialConsumption implements Serializable {
 
     @Column(name = "total_material_cost")
     private Double totalMaterialCost;
+
+    @Column(name = "usage_date")
+    private Instant usageDate;
 
     @JsonIgnoreProperties(value = { "products", "warehouse" }, allowSetters = true)
     @ManyToOne(fetch = FetchType.LAZY)
@@ -146,6 +150,19 @@ public class RawMaterialConsumption implements Serializable {
     }
     public void setProjects(Projects projects) {
         this.projects = projects;
+    }
+
+    public Instant getUsageDate() {
+        return usageDate;
+    }
+
+    public RawMaterialConsumption usageDate(Instant usageDate) {
+        this.setUsageDate(usageDate);
+        return this;
+    }
+
+    public void setUsageDate(Instant usageDate) {
+        this.usageDate = usageDate;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

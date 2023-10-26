@@ -7,10 +7,14 @@ import com.mycompany.myapp.service.mapper.ProjectsMapper;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  * Service Implementation for managing {@link Projects}.
@@ -19,9 +23,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ProjectsService {
 
+    @PersistenceContext
+    private EntityManager entityManager;
     private final Logger log = LoggerFactory.getLogger(ProjectsService.class);
 
     private final ProjectsRepository projectsRepository;
+
+    @Autowired
+    private RawMaterialConsumptionService rawMaterialConsumptionService;
+
+    @Autowired
+    private ProductConsumptionService productConsumptionService;
 
     private final ProjectsMapper projectsMapper;
 
@@ -29,7 +41,6 @@ public class ProjectsService {
         this.projectsRepository = projectsRepository;
         this.projectsMapper = projectsMapper;
     }
-
     /**
      * Save a projects.
      *
@@ -43,6 +54,20 @@ public class ProjectsService {
         return projectsMapper.toDto(projects);
     }
 
+    @Transactional
+    public Projects updateFinalTotal(double cost){
+        Projects projects = projectsRepository.findById((long)1).orElse(null);
+        if(projects!=null){
+            projects.setFinalTotal(cost);
+            entityManager.flush();
+            projects = projectsRepository.save(projects);
+            return projects;
+        }
+        else{
+            log.info("null project");
+            return new Projects();
+        }
+    }
     /**
      * Update a projects.
      *
@@ -87,6 +112,7 @@ public class ProjectsService {
         log.debug("Request to get all Projects");
         return projectsRepository.findAll(pageable).map(projectsMapper::toDto);
     }
+
 
     /**
      * Get one projects by id.

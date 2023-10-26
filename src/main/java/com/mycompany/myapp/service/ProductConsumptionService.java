@@ -45,6 +45,14 @@ public class ProductConsumptionService {
         productConsumption = productConsumptionRepository.save(productConsumption);
         return productConsumptionMapper.toDto(productConsumption);
     }
+    public Integer getTotalProductsCost(int id){
+        try {
+            return productConsumptionRepository.getProductsCostByProjectsId(id).get(0);
+        }
+        catch(Exception e){
+            return 0;
+        }
+    }
 
     /**
      * Update a productConsumption.
@@ -90,6 +98,8 @@ public class ProductConsumptionService {
         log.debug("Request to get all ProductConsumptions");
         return productConsumptionRepository.findAll(pageable).map(productConsumptionMapper::toDto);
     }
+
+
 
     /**
      * Get one productConsumption by id.

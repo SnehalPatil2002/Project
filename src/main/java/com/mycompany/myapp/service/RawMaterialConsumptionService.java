@@ -4,6 +4,10 @@ import com.mycompany.myapp.domain.RawMaterialConsumption;
 import com.mycompany.myapp.repository.RawMaterialConsumptionRepository;
 import com.mycompany.myapp.service.dto.RawMaterialConsumptionDTO;
 import com.mycompany.myapp.service.mapper.RawMaterialConsumptionMapper;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,6 +94,21 @@ public class RawMaterialConsumptionService {
         log.debug("Request to get all RawMaterialConsumptions");
         return rawMaterialConsumptionRepository.findAll(pageable).map(rawMaterialConsumptionMapper::toDto);
     }
+
+    public List<Integer> findCostByDate() {
+        log.debug("Request to get all RawMaterialConsumptions");
+        return rawMaterialConsumptionRepository.getSumCostByDate();
+    }
+
+    public Integer getTotalRawMaterialCost(int id){
+        try {
+            return rawMaterialConsumptionRepository.getMaterialCostByProjectsId(id).get(0);
+        }
+        catch(Exception e){
+            return 0;
+        }
+    }
+
 
     /**
      * Get one rawMaterialConsumption by id.

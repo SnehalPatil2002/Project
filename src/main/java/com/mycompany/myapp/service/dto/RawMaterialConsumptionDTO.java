@@ -1,6 +1,7 @@
 package com.mycompany.myapp.service.dto;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
 
 /**
@@ -23,6 +24,8 @@ public class RawMaterialConsumptionDTO implements Serializable {
     private ProductionLineDTO productionLine;
 
     private ProjectsDTO projects;
+
+    private Instant usageDate;
 
     public Long getId() {
         return id;
@@ -87,6 +90,15 @@ public class RawMaterialConsumptionDTO implements Serializable {
     public void setProjects(ProjectsDTO projects) {
         this.projects = projects;
     }
+
+    public Instant getUsageDate() {
+        return usageDate;
+    }
+
+    public void setUsageDate(Instant usageDate) {
+        this.usageDate = usageDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

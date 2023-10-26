@@ -105,6 +105,9 @@ public class RawMaterialConsumptionQueryService extends QueryService<RawMaterial
                 specification =
                     specification.and(buildRangeSpecification(criteria.getTotalMaterialCost(), RawMaterialConsumption_.totalMaterialCost));
             }
+            if (criteria.getUsageDate() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getUsageDate(), RawMaterialConsumption_.usageDate));
+            }
             if(criteria.getRawMaterialId() != null){
                 specification = specification.and(buildSpecification(criteria.getRawMaterialId(),root -> root.join(RawMaterialConsumption_.rawMaterial, JoinType.LEFT).get(RawMaterial_.id)));
             }

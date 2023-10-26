@@ -34,6 +34,8 @@ public class RawMaterialConsumptionCriteria implements Serializable, Criteria {
     private LongFilter productionLineId;
     private LongFilter projectsId;
 
+    private InstantFilter usageDate;
+
     private Boolean distinct;
 
     public RawMaterialConsumptionCriteria() {}
@@ -47,6 +49,7 @@ public class RawMaterialConsumptionCriteria implements Serializable, Criteria {
         this.productsId = other.productsId == null ? null : other.productsId.copy();
         this.productionLineId = other.productionLineId == null ? null : other.productionLineId.copy();
         this.projectsId = other.projectsId == null ? null : other.projectsId.copy();
+        this.usageDate = other.usageDate == null ? null : other.usageDate.copy();
         this.distinct = other.distinct;
     }
 
@@ -170,6 +173,22 @@ public class RawMaterialConsumptionCriteria implements Serializable, Criteria {
         }
         return projectsId();
     }
+
+    public InstantFilter getUsageDate() {
+        return usageDate;
+    }
+
+    public InstantFilter usageDate() {
+        if (usageDate == null) {
+            usageDate = new InstantFilter();
+        }
+        return usageDate;
+    }
+
+    public void setUsageDate(InstantFilter usageDate) {
+        this.usageDate = usageDate;
+    }
+
     public Boolean getDistinct() {
         return distinct;
     }
@@ -196,6 +215,7 @@ public class RawMaterialConsumptionCriteria implements Serializable, Criteria {
                 Objects.equals(productsId, that.productsId) &&
                 Objects.equals(productionLineId, that.productionLineId) &&
                 Objects.equals(projectsId, that.projectsId) &&
+                Objects.equals(usageDate, that.usageDate) &&
             Objects.equals(distinct, that.distinct)
         );
     }
@@ -217,6 +237,7 @@ public class RawMaterialConsumptionCriteria implements Serializable, Criteria {
             (productsId != null ? "productsId=" + productsId + ", " : "") +
             (productionLineId != null ? "productionLineId=" + productionLineId + ", " : "") +
             (projectsId != null ? "projectsId=" + projectsId + ", " : "") +
+            (usageDate != null ? "projectsId=" + usageDate + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }
